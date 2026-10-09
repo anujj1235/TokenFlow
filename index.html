@@ -1,0 +1,2106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TokenFlow | Smart Token Generation System</title>
+
+
+    <!-- Bootstrap -->
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+
+    <!-- Bootstrap Icons -->
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <!-- Custom CSS -->
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+
+    <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+            background: #f8fafc;
+        }
+
+
+        /* =====================================================
+           HERO BACKGROUND
+           ===================================================== */
+
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(37, 99, 235, 0.16),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 85% 25%,
+                    rgba(124, 58, 237, 0.15),
+                    transparent 32%
+                ),
+
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(14, 165, 233, 0.10),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f8fbff 0%,
+                    #eef5ff 45%,
+                    #f7f3ff 100%
+                );
+        }
+
+
+        /* TECH GRID */
+
+        .hero-section::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(37, 99, 235, 0.035) 1px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    90deg,
+                    rgba(37, 99, 235, 0.035) 1px,
+                    transparent 1px
+                );
+
+            background-size: 45px 45px;
+
+            mask-image: linear-gradient(
+                to bottom,
+                black,
+                transparent 90%
+            );
+
+            pointer-events: none;
+        }
+
+
+        /* FLOATING CIRCLE */
+
+        .hero-section::after {
+            content: "";
+
+            position: absolute;
+
+            width: 420px;
+            height: 420px;
+
+            right: -180px;
+            top: 120px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(37, 99, 235, 0.10);
+
+            box-shadow:
+                0 0 0 35px rgba(37, 99, 235, 0.025),
+                0 0 0 70px rgba(37, 99, 235, 0.018);
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           HERO CONTENT
+           ===================================================== */
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            animation: fadeUp 0.8s ease;
+        }
+
+
+        .hero-badge {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            border: 1px solid rgba(37, 99, 235, 0.15);
+
+            background: rgba(255,255,255,0.72);
+
+            backdrop-filter: blur(15px);
+
+            border-radius: 50px;
+
+            padding: 9px 16px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            color: #2563eb;
+
+            box-shadow:
+                0 8px 25px rgba(37, 99, 235, 0.06);
+        }
+
+
+        .hero-title {
+            position: relative;
+
+            font-size: clamp(42px, 5vw, 70px);
+
+            line-height: 1.05;
+
+            letter-spacing: -2px;
+
+            color: #0f172a;
+        }
+
+
+        .hero-title span {
+            color: #2563eb;
+
+            position: relative;
+        }
+
+
+        .hero-title span::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: -5px;
+
+            width: 100%;
+            height: 4px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            opacity: 0.25;
+        }
+
+
+        .hero-description {
+            max-width: 600px;
+
+            font-size: 18px;
+
+            line-height: 1.7;
+
+            color: #64748b !important;
+        }
+
+
+        /* =====================================================
+           HERO BUTTONS
+           ===================================================== */
+
+        .hero-btn {
+            border-radius: 12px;
+
+            padding: 13px 23px;
+
+            font-weight: 600;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 30px rgba(37, 99, 235, 0.20);
+        }
+
+
+        /* =====================================================
+           HERO STATS
+           ===================================================== */
+
+        .hero-stats {
+            display: flex;
+
+            gap: 45px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .hero-stat {
+            position: relative;
+
+            padding-left: 14px;
+        }
+
+
+        .hero-stat::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 4px;
+
+            width: 3px;
+            height: 32px;
+
+            border-radius: 5px;
+
+            background: #2563eb;
+        }
+
+
+        .hero-stat strong {
+            display: block;
+
+            font-size: 25px;
+
+            color: #0f172a;
+        }
+
+
+        .hero-stat small {
+            color: #64748b;
+        }
+
+
+        /* =====================================================
+           LIVE QUEUE CARD
+           ===================================================== */
+
+        .live-queue-card {
+            position: relative;
+
+            z-index: 3;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.94),
+                    rgba(248,250,252,0.88)
+                );
+
+            backdrop-filter: blur(25px);
+
+            border: 1px solid rgba(255,255,255,0.8);
+
+            border-radius: 26px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 30px 80px rgba(15,23,42,0.12),
+                0 0 0 1px rgba(37,99,235,0.04);
+
+            animation: floatingCard 4s ease-in-out infinite;
+        }
+
+
+        /* CARD GLOW */
+
+        .live-queue-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            right: -80px;
+            top: -80px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(37,99,235,0.14),
+                    transparent 70%
+                );
+
+            pointer-events: none;
+        }
+
+
+        /* CARD HEADER */
+
+        .queue-live-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+
+        .live-status {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            background: #ecfdf5;
+
+            color: #15803d;
+
+            padding: 7px 12px;
+
+            border-radius: 30px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            border: 1px solid #bbf7d0;
+        }
+
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #22c55e;
+
+            animation: pulse 1.5s infinite;
+        }
+
+
+        /* =====================================================
+           TOKEN PREVIEW
+           ===================================================== */
+
+        .token-preview {
+            position: relative;
+
+            text-align: center;
+
+            padding: 30px 15px;
+
+            margin: 20px 0;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eff6ff,
+                    #f5f3ff
+                );
+
+            border: 1px solid #dbeafe;
+
+            overflow: hidden;
+        }
+
+
+        .token-preview::before {
+            content: "";
+
+            position: absolute;
+
+            width: 150px;
+            height: 150px;
+
+            border-radius: 50%;
+
+            background: rgba(37,99,235,0.05);
+
+            left: -70px;
+            bottom: -90px;
+        }
+
+
+        .token-label {
+            font-size: 11px;
+
+            letter-spacing: 2px;
+
+            color: #64748b;
+
+            font-weight: 700;
+        }
+
+
+        .live-token {
+            font-size: 65px;
+
+            font-weight: 900;
+
+            letter-spacing: 4px;
+
+            color: #2563eb;
+
+            margin: 5px 0;
+
+            text-shadow:
+                0 5px 20px rgba(37,99,235,0.15);
+
+            transition: 0.3s;
+        }
+
+
+        .queue-position {
+            display: inline-block;
+
+            padding: 7px 14px;
+
+            background: #fff7ed;
+
+            color: #c2410c;
+
+            border: 1px solid #fed7aa;
+
+            border-radius: 30px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           QUEUE METRICS
+           ===================================================== */
+
+        .queue-metrics {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 10px;
+
+            text-align: center;
+        }
+
+
+        .queue-metric {
+            padding: 14px 5px;
+
+            border-radius: 13px;
+
+            background: #f8fafc;
+
+            border: 1px solid #eef2f7;
+
+            transition: 0.25s;
+        }
+
+
+        .queue-metric:hover {
+            transform: translateY(-3px);
+
+            background: #eff6ff;
+
+            border-color: #dbeafe;
+        }
+
+
+        .queue-metric strong {
+            display: block;
+
+            font-size: 18px;
+
+            color: #0f172a;
+        }
+
+
+        .queue-metric small {
+            color: #64748b;
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           QUICK ACTION
+           ===================================================== */
+
+        .quick-action {
+            margin-top: 18px;
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        .quick-action a,
+        .quick-action button {
+            flex: 1;
+
+            border-radius: 11px;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           FEATURES SECTION
+           ===================================================== */
+
+        #features {
+            position: relative;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff,
+                    #f8fafc
+                );
+        }
+
+
+        .feature-card {
+            height: 100%;
+
+            border-radius: 20px;
+
+            border: 1px solid #e2e8f0;
+
+            background: rgba(255,255,255,0.85);
+
+            position: relative;
+
+            overflow: hidden;
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease,
+                border-color 0.35s ease;
+        }
+
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+
+            border-color: #bfdbfe;
+
+            box-shadow:
+                0 20px 45px rgba(15,23,42,0.08);
+        }
+
+
+        .feature-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 100px;
+            height: 100px;
+
+            right: -35px;
+            top: -35px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(37,99,235,0.05);
+
+            transition: 0.4s;
+        }
+
+
+        .feature-card:hover::after {
+            transform: scale(1.5);
+        }
+
+
+        .feature-icon {
+            width: 58px;
+            height: 58px;
+
+            border-radius: 16px;
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 25px;
+
+            transition: 0.3s;
+        }
+
+
+        .feature-card:hover .feature-icon {
+            transform:
+                scale(1.1)
+                rotate(-5deg);
+
+            background: #2563eb;
+
+            color: white;
+        }
+
+
+        /* =====================================================
+           HOW IT WORKS
+           ===================================================== */
+
+        #how-it-works {
+            position: relative;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(37,99,235,0.07),
+                    transparent 40%
+                ),
+
+                #f8fafc !important;
+        }
+
+
+        .process-step {
+            position: relative;
+        }
+
+
+        .process-icon {
+            width: 75px;
+            height: 75px;
+
+            margin: auto;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 28px;
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            box-shadow:
+                0 12px 35px rgba(15,23,42,0.08);
+
+            color: #2563eb;
+
+            transition: 0.3s;
+        }
+
+
+        .process-step:hover .process-icon {
+            transform: scale(1.1);
+
+            background: #2563eb;
+
+            color: white;
+
+            box-shadow:
+                0 15px 35px rgba(37,99,235,0.25);
+        }
+
+
+        .process-line {
+            position: absolute;
+
+            top: 37px;
+
+            left: 70%;
+
+            width: 60%;
+
+            border-top:
+                2px dashed #cbd5e1;
+        }
+
+
+        /* =====================================================
+           CTA
+           ===================================================== */
+
+        .cta-section {
+            padding: 90px 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #f8fafc,
+                    #ffffff
+                );
+        }
+
+
+        .cta-card {
+            position: relative;
+
+            overflow: hidden;
+
+            border-radius: 28px;
+
+            padding: 60px;
+
+            background:
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(255,255,255,0.15),
+                    transparent 25%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #1e3a8a
+                );
+
+            color: white;
+
+            box-shadow:
+                0 30px 70px rgba(37,99,235,0.25);
+        }
+
+
+        .cta-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,0.07);
+
+            right: -100px;
+            top: -130px;
+        }
+
+
+        .cta-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,0.05);
+
+            left: -90px;
+            bottom: -110px;
+        }
+
+
+        /* =====================================================
+           ABOUT
+           ===================================================== */
+
+        #about {
+            background:
+                linear-gradient(
+                    135deg,
+                    #f8fafc,
+                    #eef5ff
+                ) !important;
+        }
+
+
+        /* =====================================================
+           BACK TO TOP
+           ===================================================== */
+
+        .back-top {
+            position: fixed;
+
+            bottom: 25px;
+            right: 25px;
+
+            width: 45px;
+            height: 45px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #2563eb;
+
+            color: white;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            box-shadow:
+                0 10px 30px rgba(37,99,235,0.30);
+
+            z-index: 999;
+
+            transition: 0.25s;
+        }
+
+
+        .back-top:hover {
+            transform: translateY(-4px);
+
+            background: #1d4ed8;
+        }
+
+
+        .back-top.show {
+            display: flex;
+        }
+
+
+        /* =====================================================
+           ANIMATIONS
+           ===================================================== */
+
+        @keyframes floatingCard {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+
+        }
+
+
+        @keyframes pulse {
+
+            0% {
+                box-shadow:
+                    0 0 0 0 rgba(34,197,94,0.4);
+            }
+
+            70% {
+                box-shadow:
+                    0 0 0 9px rgba(34,197,94,0);
+            }
+
+            100% {
+                box-shadow:
+                    0 0 0 0 rgba(34,197,94,0);
+            }
+
+        }
+
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+           ===================================================== */
+
+        @media (max-width: 991px) {
+
+            .hero-section {
+                padding-top: 80px;
+            }
+
+            .process-line {
+                display: none;
+            }
+
+        }
+
+
+        @media (max-width: 576px) {
+
+            .hero-stats {
+                gap: 20px;
+            }
+
+            .live-token {
+                font-size: 48px;
+            }
+
+            .cta-card {
+                padding: 35px 25px;
+            }
+
+            .live-queue-card {
+                padding: 22px;
+            }
+
+            .queue-metrics {
+                gap: 6px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold"
+           href="index.html">
+
+            <i class="bi bi-ticket-perforated-fill text-primary"></i>
+
+            TokenFlow
+
+        </a>
+
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <div class="collapse navbar-collapse"
+             id="navbarNav">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+
+                <li class="nav-item">
+
+                    <a class="nav-link active"
+                       href="#home">
+
+                        Home
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="#features">
+
+                        Features
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="#how-it-works">
+
+                        How It Works
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="token-history.html">
+
+                        Token History
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="#about">
+
+                        About
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item ms-lg-3">
+
+                    <a href="login.html"
+                       class="btn btn-outline-primary px-4">
+
+                        <i class="bi bi-person"></i>
+
+                        Login
+
+                    </a>
+
+                </li>
+
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO SECTION
+     ===================================================== -->
+
+<section id="home"
+         class="hero-section">
+
+    <div class="container">
+
+        <div class="row align-items-center min-vh-100">
+
+
+            <!-- LEFT -->
+
+            <div class="col-lg-6 hero-content">
+
+                <div class="hero-badge mb-4">
+
+                    <span class="live-dot"></span>
+
+                    Smart Queue Management System
+
+                </div>
+
+
+                <h1 class="hero-title fw-bold mb-4">
+
+                    Your Time Matters.
+
+                    <br>
+
+                    <span>Don't Wait.</span>
+
+                </h1>
+
+
+                <p class="hero-description text-muted mb-4">
+
+                    TokenFlow allows you to generate a digital
+                    token, monitor your queue position and
+                    reach the service counter exactly when
+                    your turn arrives.
+
+                </p>
+
+
+                <div class="d-flex gap-3 flex-wrap">
+
+                    <a href="services.html"
+                       class="btn btn-primary hero-btn">
+
+                        <i class="bi bi-ticket-perforated"></i>
+
+                        Get Your Token
+
+                    </a>
+
+
+                    <a href="#how-it-works"
+                       class="btn btn-outline-secondary hero-btn">
+
+                        <i class="bi bi-play-circle"></i>
+
+                        How It Works
+
+                    </a>
+
+                </div>
+
+
+                <!-- STATS -->
+
+                <div class="hero-stats mt-5">
+
+                    <div class="hero-stat">
+
+                        <strong id="tokensCount">
+                            10K+
+                        </strong>
+
+                        <small>
+                            Tokens Generated
+                        </small>
+
+                    </div>
+
+
+                    <div class="hero-stat">
+
+                        <strong>
+                            4+
+                        </strong>
+
+                        <small>
+                            Services
+                        </small>
+
+                    </div>
+
+
+                    <div class="hero-stat">
+
+                        <strong>
+                            95%
+                        </strong>
+
+                        <small>
+                            Time Efficiency
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT -->
+
+            <div class="col-lg-6 mt-5 mt-lg-0">
+
+                <div class="live-queue-card">
+
+
+                    <!-- HEADER -->
+
+                    <div class="queue-live-header">
+
+                        <div>
+
+                            <small class="text-muted">
+                                LIVE QUEUE
+                            </small>
+
+                            <h4 class="fw-bold mb-0">
+                                Queue Monitor
+                            </h4>
+
+                        </div>
+
+
+                        <span class="live-status">
+
+                            <span class="live-dot"></span>
+
+                            LIVE
+
+                        </span>
+
+                    </div>
+
+
+                    <hr>
+
+
+                    <!-- NOW SERVING -->
+
+                    <div class="d-flex justify-content-between">
+
+                        <div>
+
+                            <small class="text-muted">
+                                NOW SERVING
+                            </small>
+
+                            <h3 class="fw-bold"
+                                id="nowServing">
+
+                                A104
+
+                            </h3>
+
+                        </div>
+
+
+                        <div class="text-end">
+
+                            <small class="text-muted">
+                                COUNTER
+                            </small>
+
+                            <h6 class="fw-bold">
+                                Counter 2
+                            </h6>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TOKEN -->
+
+                    <div class="token-preview">
+
+                        <div class="token-label">
+                            SAMPLE TOKEN
+                        </div>
+
+                        <div class="live-token"
+                             id="liveToken">
+
+                            A108
+
+                        </div>
+
+                        <span class="queue-position"
+                              id="peopleAhead">
+
+                            4 people ahead
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- METRICS -->
+
+                    <div class="queue-metrics">
+
+                        <div class="queue-metric">
+
+                            <strong id="waitTime">
+                                ~20 min
+                            </strong>
+
+                            <small>
+                                Estimated Wait
+                            </small>
+
+                        </div>
+
+
+                        <div class="queue-metric">
+
+                            <strong>
+                                12
+                            </strong>
+
+                            <small>
+                                Waiting
+                            </small>
+
+                        </div>
+
+
+                        <div class="queue-metric">
+
+                            <strong>
+                                96
+                            </strong>
+
+                            <small>
+                                Served Today
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ACTIONS -->
+
+                    <div class="quick-action">
+
+                        <a href="services.html"
+                           class="btn btn-primary">
+
+                            <i class="bi bi-ticket"></i>
+
+                            Generate Token
+
+                        </a>
+
+
+                        <button class="btn btn-outline-primary"
+                                onclick="checkQueue()">
+
+                            <i class="bi bi-activity"></i>
+
+                            Check Queue
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURES
+     ===================================================== -->
+
+<section id="features"
+         class="section-padding">
+
+    <div class="container">
+
+
+        <div class="text-center mb-5">
+
+            <span class="section-label">
+                WHY TOKENFLOW?
+            </span>
+
+            <h2 class="fw-bold mt-2">
+                Queue Management Made Smarter
+            </h2>
+
+            <p class="text-muted">
+                Everything you need for a faster and better
+                queue experience.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card p-4">
+
+                    <div class="feature-icon mb-4">
+
+                        <i class="bi bi-ticket-perforated"></i>
+
+                    </div>
+
+                    <h5>
+                        Digital Tokens
+                    </h5>
+
+                    <p class="text-muted">
+
+                        Generate a unique token digitally
+                        without standing in a physical queue.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card p-4">
+
+                    <div class="feature-icon mb-4">
+
+                        <i class="bi bi-activity"></i>
+
+                    </div>
+
+                    <h5>
+                        Live Queue Tracking
+                    </h5>
+
+                    <p class="text-muted">
+
+                        See the currently serving token and
+                        monitor your position in the queue.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card p-4">
+
+                    <div class="feature-icon mb-4">
+
+                        <i class="bi bi-bell"></i>
+
+                    </div>
+
+                    <h5>
+                        Smart Notifications
+                    </h5>
+
+                    <p class="text-muted">
+
+                        Receive alerts when your turn is
+                        getting closer.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card p-4">
+
+                    <div class="feature-icon mb-4">
+
+                        <i class="bi bi-clock-history"></i>
+
+                    </div>
+
+                    <h5>
+                        Save Time
+                    </h5>
+
+                    <p class="text-muted">
+
+                        Spend less time physically waiting
+                        and more time doing useful activities.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card p-4">
+
+                    <div class="feature-icon mb-4">
+
+                        <i class="bi bi-phone"></i>
+
+                    </div>
+
+                    <h5>
+                        Easy Access
+                    </h5>
+
+                    <p class="text-muted">
+
+                        Access your token and queue information
+                        from any device.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="feature-card p-4">
+
+                    <div class="feature-icon mb-4">
+
+                        <i class="bi bi-shield-check"></i>
+
+                    </div>
+
+                    <h5>
+                        Simple & Secure
+                    </h5>
+
+                    <p class="text-muted">
+
+                        Designed with a simple interface that
+                        keeps the queue process clear and easy.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     HOW IT WORKS
+     ===================================================== -->
+
+<section id="how-it-works"
+         class="section-padding bg-light">
+
+    <div class="container">
+
+
+        <div class="text-center mb-5">
+
+            <span class="section-label">
+                HOW IT WORKS
+            </span>
+
+            <h2 class="fw-bold mt-2">
+                Get Your Token in 3 Simple Steps
+            </h2>
+
+            <p class="text-muted">
+                No complicated process. Just three simple steps.
+            </p>
+
+        </div>
+
+
+        <div class="row g-5 text-center">
+
+
+            <!-- STEP 1 -->
+
+            <div class="col-md-4 process-step">
+
+                <div class="process-icon">
+
+                    <i class="bi bi-grid"></i>
+
+                </div>
+
+                <div class="process-line"></div>
+
+                <h5 class="mt-4">
+                    Select Service
+                </h5>
+
+                <p class="text-muted">
+
+                    Choose the department or service
+                    you want to visit.
+
+                </p>
+
+            </div>
+
+
+            <!-- STEP 2 -->
+
+            <div class="col-md-4 process-step">
+
+                <div class="process-icon">
+
+                    <i class="bi bi-ticket-perforated"></i>
+
+                </div>
+
+                <div class="process-line"></div>
+
+                <h5 class="mt-4">
+                    Generate Token
+                </h5>
+
+                <p class="text-muted">
+
+                    Generate your unique digital token
+                    instantly.
+
+                </p>
+
+            </div>
+
+
+            <!-- STEP 3 -->
+
+            <div class="col-md-4 process-step">
+
+                <div class="process-icon">
+
+                    <i class="bi bi-graph-up-arrow"></i>
+
+                </div>
+
+                <h5 class="mt-4">
+                    Track Your Turn
+                </h5>
+
+                <p class="text-muted">
+
+                    Monitor the queue and arrive when
+                    your turn is approaching.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CTA
+     ===================================================== -->
+
+<section class="cta-section">
+
+    <div class="container">
+
+        <div class="cta-card text-center">
+
+            <h2 class="fw-bold mb-3">
+
+                Ready to Skip the Queue?
+
+            </h2>
+
+            <p class="mb-4">
+
+                Generate your digital token and manage
+                your waiting time smarter.
+
+            </p>
+
+            <a href="services.html"
+               class="btn btn-light btn-lg px-5">
+
+                <i class="bi bi-ticket-perforated"></i>
+
+                Generate My Token
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT
+     ===================================================== -->
+
+<section id="about"
+         class="section-padding bg-light">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+
+            <div class="col-lg-6">
+
+                <span class="section-label">
+                    ABOUT TOKENFLOW
+                </span>
+
+                <h2 class="fw-bold mt-2 mb-3">
+
+                    A Smarter Way to Manage Queues
+
+                </h2>
+
+                <p class="text-muted">
+
+                    TokenFlow is a web-based Token Generation
+                    System designed to reduce physical waiting
+                    and make queue management simple.
+
+                </p>
+
+                <p class="text-muted">
+
+                    Users can select a service, generate a
+                    digital token and monitor their queue
+                    position through an interactive interface.
+
+                </p>
+
+            </div>
+
+
+            <div class="col-lg-6 mt-4 mt-lg-0">
+
+                <div class="row g-3">
+
+
+                    <div class="col-6">
+
+                        <div class="feature-card p-4 text-center">
+
+                            <i class="bi bi-lightning-charge-fill fs-2 text-primary"></i>
+
+                            <h5 class="mt-3">
+                                Fast
+                            </h5>
+
+                            <small class="text-muted">
+                                Quick token generation
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-6">
+
+                        <div class="feature-card p-4 text-center">
+
+                            <i class="bi bi-bar-chart-fill fs-2 text-primary"></i>
+
+                            <h5 class="mt-3">
+                                Smart
+                            </h5>
+
+                            <small class="text-muted">
+                                Queue monitoring
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-6">
+
+                        <div class="feature-card p-4 text-center">
+
+                            <i class="bi bi-phone-fill fs-2 text-primary"></i>
+
+                            <h5 class="mt-3">
+                                Digital
+                            </h5>
+
+                            <small class="text-muted">
+                                No physical token
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-6">
+
+                        <div class="feature-card p-4 text-center">
+
+                            <i class="bi bi-people-fill fs-2 text-primary"></i>
+
+                            <h5 class="mt-3">
+                                User Friendly
+                            </h5>
+
+                            <small class="text-muted">
+                                Simple interface
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer class="footer">
+
+    <div class="container text-center">
+
+        <h5>
+
+            <i class="bi bi-ticket-perforated-fill"></i>
+
+            TokenFlow
+
+        </h5>
+
+        <p class="mb-1">
+            Smart Token Generation System
+        </p>
+
+        <small>
+            © 2026 TokenFlow. All rights reserved.
+        </small>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     BACK TO TOP
+     ===================================================== -->
+
+<button id="backTop"
+        class="back-top"
+        onclick="window.scrollTo({top:0, behavior:'smooth'})">
+
+    <i class="bi bi-arrow-up"></i>
+
+</button>
+
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    let currentToken = 104;
+
+    let userToken = 108;
+
+    let peopleAhead = 4;
+
+
+    const nowServing =
+        document.getElementById("nowServing");
+
+    const liveToken =
+        document.getElementById("liveToken");
+
+    const peopleAheadElement =
+        document.getElementById("peopleAhead");
+
+    const waitTime =
+        document.getElementById("waitTime");
+
+
+    setInterval(function () {
+
+        if (peopleAhead > 0) {
+
+            currentToken++;
+
+            peopleAhead--;
+
+            nowServing.innerText =
+                "A" + currentToken;
+
+            peopleAheadElement.innerText =
+                peopleAhead +
+                (peopleAhead === 1
+                    ? " person ahead"
+                    : " people ahead");
+
+
+            let minutes =
+                peopleAhead * 5;
+
+            waitTime.innerText =
+                "~" + minutes + " min";
+
+        }
+
+        else {
+
+            peopleAhead = 4;
+
+            currentToken = 104;
+
+            nowServing.innerText =
+                "A104";
+
+            peopleAheadElement.innerText =
+                "4 people ahead";
+
+            waitTime.innerText =
+                "~20 min";
+
+        }
+
+    }, 5000);
+
+
+    /* TOKEN COUNTER */
+
+    const tokenCounter =
+        document.getElementById("tokensCount");
+
+
+    let counter =
+        10000;
+
+
+    setInterval(function () {
+
+        counter++;
+
+        tokenCounter.innerText =
+            counter.toLocaleString() + "+";
+
+    }, 4000);
+
+
+    /* BACK TO TOP */
+
+    const backTop =
+        document.getElementById("backTop");
+
+
+    window.addEventListener("scroll", function () {
+
+        if (window.scrollY > 500) {
+
+            backTop.classList.add("show");
+
+        }
+
+        else {
+
+            backTop.classList.remove("show");
+
+        }
+
+    });
+
+
+});
+
+
+/* =====================================================
+   CHECK QUEUE
+   ===================================================== */
+
+function checkQueue() {
+
+    const card =
+        document.querySelector(".live-queue-card");
+
+
+    card.style.transform =
+        "scale(1.02)";
+
+
+    setTimeout(function () {
+
+        card.style.transform = "";
+
+    }, 400);
+
+
+    alert(
+        "Live Queue Status\n\n" +
+        "Now Serving: A104\n" +
+        "Your Sample Token: A108\n" +
+        "People Ahead: 4\n" +
+        "Estimated Wait: ~20 minutes"
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

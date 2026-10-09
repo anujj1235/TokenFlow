@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account | TokenFlow</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet"
+          href="css/style.css">
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* ==============================
+           REGISTER PAGE
+        ============================== */
+
+        .modern-auth-page {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(circle at 10% 20%,
+                rgba(37,99,235,0.14),
+                transparent 30%),
+
+                radial-gradient(circle at 90% 80%,
+                rgba(124,58,237,0.12),
+                transparent 30%),
+
+                #f4f7fb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 30px;
+        }
+
+
+        .auth-wrapper {
+
+            width: 100%;
+
+            max-width: 1100px;
+
+            min-height: 680px;
+
+            background: white;
+
+            border-radius: 30px;
+
+            overflow: hidden;
+
+            display: grid;
+
+            grid-template-columns: 0.95fr 1.05fr;
+
+            box-shadow:
+                0 30px 80px rgba(15,23,42,0.12);
+
+        }
+
+
+        /* ==============================
+           LEFT PANEL
+        ============================== */
+
+        .auth-brand-panel {
+
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 55px;
+
+            color: white;
+
+            background:
+
+                radial-gradient(circle at 85% 15%,
+                rgba(96,165,250,0.30),
+                transparent 30%),
+
+                radial-gradient(circle at 15% 90%,
+                rgba(124,58,237,0.25),
+                transparent 35%),
+
+                linear-gradient(
+                    145deg,
+                    #0f172a,
+                    #172554
+                );
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+        }
+
+
+        .auth-brand-panel::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+
+            height: 300px;
+
+            border: 1px solid rgba(255,255,255,0.10);
+
+            border-radius: 50%;
+
+            right: -120px;
+
+            top: -100px;
+
+        }
+
+
+        .auth-brand-panel::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 200px;
+
+            height: 200px;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 50%;
+
+            left: -90px;
+
+            bottom: -90px;
+
+        }
+
+
+        .brand-logo {
+
+            position: relative;
+
+            z-index: 2;
+
+            font-size: 23px;
+
+            font-weight: 800;
+
+        }
+
+
+        .brand-logo i {
+
+            color: #60a5fa;
+
+            margin-right: 8px;
+
+        }
+
+
+        .register-intro {
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+
+        .register-intro .eyebrow {
+
+            color: #60a5fa;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .register-intro h1 {
+
+            font-size: 43px;
+
+            line-height: 1.1;
+
+            font-weight: 800;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .register-intro h1 span {
+
+            color: #60a5fa;
+
+        }
+
+
+        .register-intro p {
+
+            color: #cbd5e1;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+
+            max-width: 410px;
+
+        }
+
+
+        /* ==============================
+           BENEFITS
+        ============================== */
+
+        .benefit-list {
+
+            margin-top: 30px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 13px;
+
+        }
+
+
+        .benefit {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            color: #cbd5e1;
+
+            font-size: 12px;
+
+        }
+
+
+        .benefit-icon {
+
+            width: 31px;
+
+            height: 31px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background: rgba(37,99,235,0.20);
+
+            color: #60a5fa;
+
+        }
+
+
+        /* ==============================
+           FORM PANEL
+        ============================== */
+
+        .auth-form-panel {
+
+            padding: 48px 55px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+        }
+
+
+        .form-top {
+
+            margin-bottom: 27px;
+
+        }
+
+
+        .mobile-logo {
+
+            display: none;
+
+        }
+
+
+        .form-top h2 {
+
+            font-size: 31px;
+
+            font-weight: 800;
+
+            color: #0f172a;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .form-top p {
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            margin: 0;
+
+        }
+
+
+        /* ==============================
+           FORM
+        ============================== */
+
+        .modern-form .form-label {
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            color: #334155;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .modern-input {
+
+            position: relative;
+
+        }
+
+
+        .modern-input > i {
+
+            position: absolute;
+
+            left: 15px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #94a3b8;
+
+            z-index: 3;
+
+        }
+
+
+        .modern-input input {
+
+            height: 47px;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 11px;
+
+            padding-left: 42px;
+
+            font-size: 12px;
+
+            transition: 0.25s;
+
+        }
+
+
+        .modern-input input:focus {
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 4px rgba(37,99,235,0.08);
+
+        }
+
+
+        .password-input {
+
+            padding-right: 45px !important;
+
+        }
+
+
+        .password-toggle {
+
+            position: absolute;
+
+            right: 6px;
+
+            top: 6px;
+
+            width: 35px;
+
+            height: 35px;
+
+            border: none;
+
+            background: #f8fafc;
+
+            color: #64748b;
+
+            border-radius: 8px;
+
+        }
+
+
+        .password-toggle:hover {
+
+            background: #eff6ff;
+
+            color: #2563eb;
+
+        }
+
+
+        /* ==============================
+           PASSWORD STRENGTH
+        ============================== */
+
+        .password-strength {
+
+            display: flex;
+
+            gap: 4px;
+
+            margin-top: 7px;
+
+        }
+
+
+        .strength-bar {
+
+            height: 3px;
+
+            flex: 1;
+
+            background: #e2e8f0;
+
+            border-radius: 5px;
+
+        }
+
+
+        .strength-text {
+
+            color: #94a3b8;
+
+            font-size: 9px;
+
+            margin-top: 5px;
+
+        }
+
+
+        /* ==============================
+           REGISTER BUTTON
+        ============================== */
+
+        .register-submit {
+
+            height: 50px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #1d4ed8
+                );
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            box-shadow:
+                0 10px 25px rgba(37,99,235,0.20);
+
+            transition: 0.25s;
+
+        }
+
+
+        .register-submit:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 15px 30px rgba(37,99,235,0.28);
+
+        }
+
+
+        /* ==============================
+           TERMS
+        ============================== */
+
+        .terms-text {
+
+            color: #64748b;
+
+            font-size: 10px;
+
+            line-height: 1.5;
+
+        }
+
+
+        .terms-text a {
+
+            color: #2563eb;
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+        }
+
+
+        /* ==============================
+           LOGIN LINK
+        ============================== */
+
+        .auth-divider {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin: 23px 0;
+
+            color: #94a3b8;
+
+            font-size: 10px;
+
+        }
+
+
+        .auth-divider::before,
+        .auth-divider::after {
+
+            content: "";
+
+            height: 1px;
+
+            background: #e2e8f0;
+
+            flex: 1;
+
+        }
+
+
+        .login-link {
+
+            text-align: center;
+
+            font-size: 12px;
+
+            color: #64748b;
+
+        }
+
+
+        .login-link a {
+
+            color: #2563eb;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+        }
+
+
+        .login-link a:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        .home-link {
+
+            text-align: center;
+
+            margin-top: 18px;
+
+        }
+
+
+        .home-link a {
+
+            color: #94a3b8;
+
+            font-size: 10px;
+
+            text-decoration: none;
+
+        }
+
+
+        .home-link a:hover {
+
+            color: #2563eb;
+
+        }
+
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 850px) {
+
+            .modern-auth-page {
+
+                padding: 15px;
+
+            }
+
+
+            .auth-wrapper {
+
+                grid-template-columns: 1fr;
+
+                max-width: 520px;
+
+                min-height: auto;
+
+            }
+
+
+            .auth-brand-panel {
+
+                display: none;
+
+            }
+
+
+            .auth-form-panel {
+
+                padding: 38px 30px;
+
+            }
+
+
+            .mobile-logo {
+
+                display: block;
+
+                color: #2563eb;
+
+                font-size: 21px;
+
+                font-weight: 800;
+
+                margin-bottom: 25px;
+
+            }
+
+
+            .mobile-logo i {
+
+                margin-right: 7px;
+
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .auth-form-panel {
+
+                padding: 30px 20px;
+
+            }
+
+
+            .form-top h2 {
+
+                font-size: 27px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="modern-auth-page">
+
+
+<div class="auth-wrapper">
+
+
+    <!-- ==============================
+         BRAND PANEL
+    =============================== -->
+
+    <div class="auth-brand-panel">
+
+
+        <div class="brand-logo">
+
+            <i class="bi bi-ticket-perforated-fill"></i>
+
+            TokenFlow
+
+        </div>
+
+
+        <div class="register-intro">
+
+            <div class="eyebrow">
+                START YOUR DIGITAL QUEUE
+            </div>
+
+
+            <h1>
+
+                Stop waiting.
+
+                <br>
+
+                <span>Start managing.</span>
+
+            </h1>
+
+
+            <p>
+
+                Create your TokenFlow account and get
+                a smarter way to handle service queues,
+                digital tokens and waiting time.
+
+            </p>
+
+
+            <div class="benefit-list">
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+
+                        <i class="bi bi-ticket-perforated"></i>
+
+                    </div>
+
+                    Digital token generation
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+
+                        <i class="bi bi-activity"></i>
+
+                    </div>
+
+                    Real-time queue tracking
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+
+                        <i class="bi bi-clock-history"></i>
+
+                    </div>
+
+                    Less physical waiting
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <div class="benefit-icon">
+
+                        <i class="bi bi-phone"></i>
+
+                    </div>
+
+                    Access from any device
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <small style="
+            color:#64748b;
+            position:relative;
+            z-index:2;
+        ">
+
+            © 2026 TokenFlow
+
+        </small>
+
+
+    </div>
+
+
+    <!-- ==============================
+         REGISTER FORM
+    =============================== -->
+
+    <div class="auth-form-panel">
+
+
+        <div class="form-top">
+
+
+            <div class="mobile-logo">
+
+                <i class="bi bi-ticket-perforated-fill"></i>
+
+                TokenFlow
+
+            </div>
+
+
+            <h2>
+                Create your account.
+            </h2>
+
+
+            <p>
+                Join TokenFlow and manage your queue digitally.
+            </p>
+
+        </div>
+
+
+        <form id="registerForm"
+              class="modern-form">
+
+
+            <!-- NAME -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Full Name
+                </label>
+
+                <div class="modern-input">
+
+                    <i class="bi bi-person"></i>
+
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Enter your full name"
+                           required>
+
+                </div>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Email Address
+                </label>
+
+                <div class="modern-input">
+
+                    <i class="bi bi-envelope"></i>
+
+                    <input type="email"
+                           class="form-control"
+                           placeholder="you@example.com"
+                           required>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHONE -->
+
+<!-- ROLE -->
+
+<div class="mb-3">
+
+    <label class="form-label">
+        Account Role
+    </label>
+
+    <div class="modern-input">
+
+        <i class="bi bi-person-badge"></i>
+
+        <select id="registerRole"
+                class="form-select"
+                required
+                style="
+                    height:47px;
+                    border:1px solid #e2e8f0;
+                    border-radius:11px;
+                    padding-left:42px;
+                    font-size:12px;
+                    color:#334155;
+                    background-color:#fff;
+                ">
+
+            <option value="" selected disabled>
+                Select your role
+            </option>
+
+            <option value="user">
+                User
+            </option>
+
+            <option value="admin">
+                Administrator
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="mb-2">
+
+                <label class="form-label">
+                    Create Password
+                </label>
+
+                <div class="modern-input">
+
+                    <i class="bi bi-lock"></i>
+
+                    <input type="password"
+                           id="registerPassword"
+                           class="form-control password-input"
+                           placeholder="Create a secure password"
+                           required>
+
+                    <button type="button"
+                            class="password-toggle"
+                            onclick="toggleRegisterPassword()">
+
+                        <i class="bi bi-eye"></i>
+
+                    </button>
+
+                </div>
+
+
+                <div class="password-strength">
+
+                    <span class="strength-bar"></span>
+
+                    <span class="strength-bar"></span>
+
+                    <span class="strength-bar"></span>
+
+                    <span class="strength-bar"></span>
+
+                </div>
+
+
+                <div class="strength-text">
+                    Use at least 8 characters for better security.
+                </div>
+
+            </div>
+
+
+            <!-- TERMS -->
+
+            <div class="form-check mt-3 mb-4">
+
+                <input class="form-check-input"
+                       type="checkbox"
+                       id="terms"
+                       required>
+
+
+                <label class="terms-text"
+                       for="terms">
+
+                    I agree to the
+                    <a href="#">
+                        Terms & Conditions
+                    </a>
+                    and understand how TokenFlow manages
+                    my account information.
+
+                </label>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <button type="submit"
+                    class="btn btn-primary w-100 register-submit">
+
+                Create TokenFlow Account
+
+                <i class="bi bi-arrow-right ms-2"></i>
+
+            </button>
+
+
+        </form>
+
+
+        <div class="auth-divider">
+            ALREADY REGISTERED?
+        </div>
+
+
+        <div class="login-link">
+
+            Already have an account?
+
+            <a href="login.html">
+                Sign in
+            </a>
+
+        </div>
+
+
+        <div class="home-link">
+
+            <a href="index.html">
+
+                <i class="bi bi-arrow-left me-1"></i>
+
+                Back to homepage
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+    function toggleRegisterPassword() {
+
+        const password =
+            document.getElementById("registerPassword");
+
+        const icon =
+            document.querySelector(".password-toggle i");
+
+
+        if (password.type === "password") {
+
+            password.type = "text";
+
+            icon.classList.remove("bi-eye");
+
+            icon.classList.add("bi-eye-slash");
+
+        }
+
+        else {
+
+            password.type = "password";
+
+            icon.classList.remove("bi-eye-slash");
+
+            icon.classList.add("bi-eye");
+
+        }
+
+    }
+
+</script>
+<script src="js/register.js"></script>
+
+</body>
+
+</html>
